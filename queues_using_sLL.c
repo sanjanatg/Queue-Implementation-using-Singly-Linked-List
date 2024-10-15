@@ -66,18 +66,19 @@ void display(NODE *first)
         printf("%d,\t",temp->info);
         temp=temp->link;
     }
-    printf("\nEND OF LIST");
+    printf("\n----------------------------------------------------------------\n");
 }
 int main()
 {
     NODE *first=NULL;//EMPTY QUEUE;
     int size,choice,count=-1;
+    
     printf("\nEnter size of queue=  ");
     scanf("%d",&size);
     
     while(1)
     {
-        printf("\nENTER\n1=to inster an element to a queue\n2=to delete an element\n3=to display\nor any other value to exit ");
+        printf("\nENTER\n1=to insert an element to a queue\n2=to delete an element\n3=to display\n4=to exit\n");
         scanf("%d",&choice);
         switch(choice)
         {
@@ -87,15 +88,33 @@ int main()
                 if(count<size)
                 {
                   int item;
-                  printf("\nEnter element to be inserted");
+                  printf("\nEnter element to be inserted = ");
                   scanf("%d",&item);
                   first=Insertrear(item,first);
                   break;                
                 }
                 else
                 {
-                    printf("\nQueue is full\ndelete an element to insert again");
+                    printf("\nQueue is full\n");
+                    printf("Enter 'y' to increase the size if the stack by 1, or enter 'n' to continue\n");
+                    char a;
+                getchar();
+                scanf("%c", &a);
+                if (a == 'y')
+                {
+                    size++;
+                    count--;
+                }
+                else if (a == 'n')
+                {
                     break;
+                }
+                else
+                {
+                    printf("\nOOPS! wrong choice ----- CONTINUE\n");
+                }
+
+                break;
                 }
             }
             case 2:
@@ -116,6 +135,10 @@ int main()
            {
             printf("\nPRINTING THE queue\n");
             display(first);
+             break;
+           }
+           case 4:
+           {
             exit(0);
            }
           default:
